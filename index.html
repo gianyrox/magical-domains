@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{name}} - magical.domains</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .name {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            margin-bottom: 3rem;
+        }
+
+        .form-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .step-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            color: #4a5568;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .step-description {
+            color: #718096;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            max-width: 500px;
+        }
+
+        .domain-input {
+            display: flex;
+            align-items: center;
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .domain-input input {
+            border: none;
+            background: transparent;
+            padding: 0.5rem;
+            font-size: 1.1rem;
+            outline: none;
+            flex: 1;
+            color: #4a5568;
+        }
+
+        .domain-suffix {
+            color: #667eea;
+            font-weight: 600;
+            padding: 0.5rem;
+        }
+
+        .description-input {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 0.75rem;
+            font-size: 1rem;
+            outline: none;
+            color: #4a5568;
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+        }
+
+        .description-input:focus,
+        .domain-input:focus-within {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .step-action {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .action-button {
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .action-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .action-button:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .status-text {
+            color: #38a169;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            padding: 2rem;
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .name {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .step-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            
+            .step-number {
+                width: 3rem;
+                height: 3rem;
+                font-size: 1.2rem;
+            }
+            
+            .input-group {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .name {
+                font-size: 2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .step-card {
+                padding: 1.5rem;
+            }
+            
+            .domain-input {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .domain-input input {
+                text-align: center;
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="name">Magical Domains</h1>
+            <p class="tagline">AI-Generated Websites in Seconds</p>
+        </header>
+        
+        <div class="form-steps">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title">Generate Your AI Website</h3>
+                    <p class="step-description">Enter your project name and description to let our AI create a beautiful, personalized website for you.</p>
+                    <div class="input-group">
+                        <div class="domain-input">
+                            <input type="text" placeholder="projectname" id="projectName">
+                            <span class="domain-suffix">.magical.domains</span>
+                        </div>
+                        <textarea 
+                            class="description-input" 
+                            id="projectDescription" 
+                            placeholder="Describe your project... (e.g., A modern portfolio website showcasing my design work and creative projects)"
+                        ></textarea>
+                    </div>
+                    <div class="step-action">
+                        <button class="action-button" id="generateButton">Generate with AI</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="step-title">Deploy Once You Like It</h3>
+                    <p class="step-description">Preview your AI-generated website and deploy it to your custom subdomain when you're happy with the result.</p>
+                    <div class="step-action">
+                        <button class="action-button" id="deployButton" disabled>Deploy to Domain</button>
+                        <span class="status-text" id="deployStatus" style="display: none;">✓ Ready to deploy</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="step-title">Buy Your Custom Domain</h3>
+                    <p class="step-description">Love your site? Purchase a custom domain to make it permanently yours and enhance your professional brand.</p>
+                    <div class="step-action">
+                        <button class="action-button" id="buyButton" disabled>Buy Custom Domain</button>
+                        <span class="status-text" id="buyStatus" style="display: none;">Available for purchase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>Powered by magical.domains</p>
+    </footer>
+
+    <script type="module" src="./dist/main.js"></script>
+</body>
+</html> 

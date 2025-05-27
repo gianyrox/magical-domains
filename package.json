@@ -1,0 +1,30 @@
+{
+  "name": "magical-domains",
+  "version": "1.0.0",
+  "description": "AI-Generated Websites in Seconds",
+  "main": "dist/main.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "python -m http.server 8000",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "ai",
+    "website-generator",
+    "domains",
+    "typescript"
+  ],
+  "author": "Magical Domains",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0"
+  },
+  "files": [
+    "dist/**/*",
+    "index.html",
+    "README.md"
+  ]
+} 
